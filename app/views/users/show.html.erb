@@ -1,1 +1,23 @@
-<%= @user.first_name %>
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <div class="card">
+  		<div class="card-body">Nom : <%= @user.last_name %></div>
+  		<div class="card-body">Prènom : <%= @user.first_name %></div>
+  		<div class="card-body">Email : <%= @user.email %></div>
+  		<div class="card-body">Description : <%= @user.description %></div>
+  		<div class="card-footer"><%= link_to "Éditer ou supprimer", edit_user_registration_path %></div>
+		</div>
+  </div>
+</div>
+
+<% if @user.events %>
+	<h1 class="text-center"> Vos évènements : </h1>
+	<% @user.events.each do |event| %>
+		<div class="jumbotron">
+			<div class="container">
+				<h1 class="display-3"><%= event.title %></h1>
+				<p><%= link_to "Page de l'évènement", event_path(event), class:"btn btn-primary btn-lg", role:"button" %></p>
+			</div>
+		</div>
+	<% end %>
+<% end %>

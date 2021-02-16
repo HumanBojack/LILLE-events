@@ -9,9 +9,9 @@ class User < ApplicationRecord
 	validates :description, presence: true
 	validates :first_name, presence: true, length: {in: 3..15}
 	validates :last_name, presence: true
-	has_many :attendances
+	has_many :attendances, dependent: :destroy
 	has_many :events, through: :attendances
-	has_many :events
+	has_many :events, dependent: :destroy
 
 	def welcome_send
 		UserMailer.welcome_email(self).deliver_now

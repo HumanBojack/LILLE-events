@@ -8,7 +8,7 @@ class Event < ApplicationRecord
 	validate :past_date
 	validate :duration_validation
 	belongs_to :user
-	has_many :attendances
+	has_many :attendances, dependent: :destroy
 	has_many :users, through: :attendances
 
 	def past_date
