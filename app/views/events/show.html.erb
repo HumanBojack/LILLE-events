@@ -1,0 +1,14 @@
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <div class="card">
+    	<div class="card-header">Le <%= @event.start_date.strftime("%d/%m/%Y") %></div>
+  		<div class="card-body">Nom : <%= @event.title %></div>
+  		<div class="card-body">Host : <%= @event.user.first_name %></div>
+  		<div class="card-body">Endroit : <%= @event.location %></div>
+  		<div class="card-body">Lieu : <%= @event.description %></div>
+  		<div class="card-body">Prix : <%= @event.price %>€</div>
+  		<div class="card-footer"><%= @event.users.count%> inscrits, dure <%= @event.duration %> minutes</div>
+  		<!-- <div class="card-footer"><%= link_to "Éditer ou supprimer", edit_user_registration_path %></div> -->
+		</div>
+  </div>
+</div>
