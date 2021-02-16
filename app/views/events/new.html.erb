@@ -1,0 +1,15 @@
+<%= form_with model: @user, :url => events_path do |f| %>
+	<%= f.label :title, "Nom de l'évènement" %>
+		<%= f.text_field :title %>
+	<%= f.label :start_date, "Date (du début) de l'évènement" %>
+		<%= f.date_field :start_date %>
+	<%= f.label :duration, "Durée (minutes)" %>
+		<%= f.number_field :price, in: 5..200, step: 5 %>
+	<%= f.label :description, "Description" %>
+		<%= f.text_area :description %>
+	<%= f.label :price, "Prix" %>
+		<%= f.number_field :price, in: 1..1000, step: 1 %>
+	<%= f.label :location, "Lieu" %>
+		<%= f.text_field :location %>
+	<%= f.submit "Créer l'évènement" %>
+<% end %>

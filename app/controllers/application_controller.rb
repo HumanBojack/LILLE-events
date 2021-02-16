@@ -6,4 +6,8 @@ class ApplicationController < ActionController::Base
 		devise_parameter_sanitizer.permit(:sign_up) {|u| u.permit(:first_name, :email, :password, :password_confirmation, :description, :last_name)}
 		devise_parameter_sanitizer.permit(:account_update) {|u| u.permit(:first_name, :email, :password, :password_confirmation, :description, :last_name, :current_password)}
 	end
+
+	def redirect_if_not_auth
+		redirect_to root_path unless user_signed_in?
+	end
 end
