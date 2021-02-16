@@ -12,12 +12,20 @@ class Event < ApplicationRecord
 	has_many :users, through: :attendances
 
 	def past_date
-		errors.add(:start_date, "La date doit être dans le futur") if start_date < DateTime.now
+		begin
+			errors.add(:start_date, "La date doit être dans le futur") if start_date < DateTime.now
+		rescue NoMethodError
+			errors.add(:start_date, "Pas de date")
+		end
 	end
 
 	def duration_validation
-		errors.add(:duration, "La durée doit être positive") if duration <= 0
-		errors.add(:duration, "La durée doit être un multiple de 5") unless duration % 5 == 0
+		begin
+			errors.add(:duration, "La durée doit être positive") if duration <= 0
+			errors.add(:duration, "La durée doit être un multiple de 5") unless duration % 5 == 0
+		rescue NoMethodError
+			errors.add(:duration, "Pas de durée")
+		end
 	end
 
 end
