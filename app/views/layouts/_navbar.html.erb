@@ -1,0 +1,23 @@
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+  <a class="navbar-brand" href="/">Lille Events</a>
+  <ul class="navbar-nav">
+    <% if user_signed_in? %>
+    <li class="nav-item">
+      <%= link_to current_user.first_name, user_path(current_user), class:"nav-link" %>
+    </li>
+    <li class="nav-item">
+      <%= link_to "Créer un évènement", new_event_path, class:"nav-link" %>
+    </li>
+    <li class="nav-item">
+      <%= link_to "Déconnexion", destroy_user_session_path, method: :delete, class:"nav-link" %>
+    </li>
+    <% else %>
+    <li class="nav-item">
+      <%= link_to "Connexion", new_user_session_path, class:"nav-link" %>
+    </li>
+    <li class="nav-item">
+      <%= link_to "Inscription", new_user_registration_path, class:"nav-link" %>
+    </li>
+    <% end %>
+  </ul>
+</nav> 
