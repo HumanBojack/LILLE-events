@@ -1,5 +1,6 @@
 class EventsController < ApplicationController
-	before_action :redirect_if_not_auth, only: [:new, :create]
+	before_action :redirect_if_not_auth, only: [:new, :create, :show]
+	before_action :redirect_if_not_admin, only: [:edit, :update, :destroy]
 	def new
 		@event = Event.new
 	end
@@ -14,12 +15,32 @@ class EventsController < ApplicationController
 		end
 	end
 
+	def edit
+		@event = Event.find(params[:id])
+	end
+
+	def update
+		@event = Event.find(params[:id])
+		@event.update(event_params)
+		if @event.save
+			redirect_to @event
+		else
+			render :new
+		end
+	end
+
   def index
   	@events = Event.all
   end
 
   def show
   	@event = Event.find(params[:id])
+  end
+
+  def destroy
+  	@event = Event.find(params[:id])
+  	@event.destroy
+  	redirect_to root_path
   end
 
   private

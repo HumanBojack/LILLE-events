@@ -4,8 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 	after_create :welcome_send
-	validates :email, presence: true, format: {with: /[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+/, message: "Need to be a valid email format"}
-	# validates :encrypted_password, presence: true
+	validates :email, uniqueness: true, presence: true, format: {with: /[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+/, message: "Need to be a valid email format"}
+	validates :encrypted_password, presence: true
 	validates :description, presence: true
 	validates :first_name, presence: true, length: {in: 3..15}
 	validates :last_name, presence: true
@@ -15,5 +15,17 @@ class User < ApplicationRecord
 
 	def welcome_send
 		UserMailer.welcome_email(self).deliver_now
+	end
+
+	def not_guest_nor_admin?(event)
+		if Attendance.find_by(user: self, event: event) || event.user == self
+			return false
+		else
+			return true
+		end
+	end
+
+	def is_admin?(event)
+		event.user == self
 	end
 end

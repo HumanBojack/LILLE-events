@@ -1,0 +1,10 @@
+
+<%= @event.user.first_name %>, voici votre espace administrateur pour "<%= @event.title %>"
+
+
+Voici la liste des participants:
+<ul>
+	<% @attendees.each do |attendee| %>
+		<li><%= attendee.user.email %></li>
+	<% end %>
+</ul>
