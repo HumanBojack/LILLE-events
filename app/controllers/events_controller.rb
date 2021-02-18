@@ -8,9 +8,11 @@ class EventsController < ApplicationController
 	def create
 		@event = Event.new(event_params)
 		@event.user = current_user
-		if @event.save
+
+		if @event.save	
 			redirect_to event_path(@event)
 		else
+			flash.now.alert = "Erreur, vérifiez la longueur de vos champs. La durée doit être multiple de 5"
 			render :new
 		end
 	end
@@ -45,6 +47,6 @@ class EventsController < ApplicationController
 
   private
   def event_params
-  	params.require(:event).permit(:title, :start_date, :duration, :description, :price, :location)
+  	params.require(:event).permit(:title, :start_date, :duration, :description, :price, :location, :event_id, :event_picture )
   end
 end

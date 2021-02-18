@@ -1,8 +1,9 @@
 
-<%= @event.user.first_name %>, voici votre espace administrateur pour "<%= @event.title %>"
+<h1 class="text-center"><%= @event.user.first_name %>, voici votre espace administrateur pour "<%= @event.title %>"</h1>
+<%= link_to "Éditer l'évènement", edit_event_path(@event.id) , class:"btn btn-warning" %>
 
 
-Voici la liste des participants:
+<p>Voici la liste des participants : </p>
 <ul>
 	<% @attendees.each do |attendee| %>
 		<li><%= attendee.user.email %></li>

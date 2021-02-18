@@ -1,6 +1,6 @@
 <div class="jumbotron jumbotron-fluid">
   <div class="container">
-<%= form_with model: @event, :url => events_path, class:"card d-flex" do |f| %>
+<%= form_with model: @event, :url => events_path, :html => { :multipart => true }, class:"card d-flex" do |f| %>
 
 <div class="d-flex">
 	<div class="form-group card-body text-center">
@@ -34,6 +34,8 @@
 		<%= f.text_field :location, class:"form-control" %>
 	</div>
 </div>
+
+<%= f.file_field :event_picture %>
 
 	<%= f.submit "Créer l'évènement", class:"btn btn-success" %>
 <% end %>

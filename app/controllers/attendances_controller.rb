@@ -4,8 +4,7 @@ before_action :redirect_if_not_admin, only: [:index]
 		@event = Event.find(params[:event_id])
 		@session = Stripe::Checkout::Session.create(
 			payment_method_types: ['card'],
-    	line_items: [
-    	{
+    	line_items: [{
       name: @event.title,
       amount: @event.price * 100,
       currency: 'eur',

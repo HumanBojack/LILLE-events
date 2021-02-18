@@ -5,11 +5,13 @@ class Event < ApplicationRecord
 	validates :description, length: {in: 20..1000}
 	validates :price, numericality: {greater_than: 0, less_than_or_equal_to: 1000}
 	validates :location, presence: true
+	validates :event_picture, presence: true
 	validate :past_date
 	validate :duration_validation
 	belongs_to :user
 	has_many :attendances, dependent: :destroy
 	has_many :users, through: :attendances
+	has_one_attached :event_picture
 
 	def past_date
 		begin
