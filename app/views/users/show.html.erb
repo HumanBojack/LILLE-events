@@ -1,6 +1,15 @@
 <div class="jumbotron jumbotron-fluid">
-  <div class="container">
-    <div class="card">
+  <div class="container d-flex flex-row">
+  	<div class="card">
+  		<% if @user.avatar.attached? %>
+				<%= image_tag @user.thumbnail  %>
+			<% end %>
+			<%= form_tag user_avatars_path(@user), multipart: true do %>
+				<%= file_field_tag :avatar %>
+				<%= submit_tag "Envoyer", class:"btn btn-secondary" %>
+			<% end %>
+		</div>
+    <div class="card flex-grow-1">
   		<div class="card-body">Nom : <%= @user.last_name %></div>
   		<div class="card-body">Prènom : <%= @user.first_name %></div>
   		<div class="card-body">Email : <%= @user.email %></div>
@@ -10,7 +19,7 @@
   </div>
 </div>
 
-<% if @user.events %>
+<% if @user.events.count >= 1%>
 	<h1 class="text-center"> Vos évènements : </h1>
 	<% @user.events.each do |event| %>
 		<div class="jumbotron">
@@ -21,3 +30,4 @@
 		</div>
 	<% end %>
 <% end %>
+

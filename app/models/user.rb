@@ -4,6 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 	after_create :welcome_send
+	after_create :random_avatar
 	validates :email, uniqueness: true, presence: true, format: {with: /[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+/, message: "Need to be a valid email format"}
 	validates :encrypted_password, presence: true
 	validates :description, presence: true
@@ -12,9 +13,21 @@ class User < ApplicationRecord
 	has_many :attendances, dependent: :destroy
 	has_many :events, through: :attendances
 	has_many :events, dependent: :destroy
+	has_one_attached :avatar
 
 	def welcome_send
 		UserMailer.welcome_email(self).deliver_now
+	end
+
+	def random_avatar
+		url = URI.parse(Faker::LoremFlickr.image(size: "300x300"))
+		filename = url.path
+		file = URI.open(url)
+		self.avatar.attach(io: file, filename: filename)
+	end
+
+	def thumbnail
+		return self.avatar.variant(resize: "300x300!")
 	end
 
 	def not_guest_nor_admin?(event)

@@ -30,4 +30,8 @@ class Event < ApplicationRecord
 		end
 	end
 
+	def banner
+		return self.event_picture.variant(resize: "1200x400!")
+	end
+
 end
