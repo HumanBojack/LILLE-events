@@ -36,6 +36,7 @@ class Event < ApplicationRecord
 
 	def validate_event
 		self.update(validated: true)
+		UserMailer.validated_email(self).deliver_now
 	end
 
 end

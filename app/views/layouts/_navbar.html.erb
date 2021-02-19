@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+<nav class="navbar navbar-expand-sm">
   <a class="navbar-brand" href="/">Lille Events</a>
   <ul class="navbar-nav">
     <% if user_signed_in? %>
@@ -11,6 +11,9 @@
     <li class="nav-item">
       <%= link_to "Déconnexion", destroy_user_session_path, method: :delete, class:"nav-link" %>
     </li>
+      <% if current_user.is_global_admin? %>
+        <li class="nav-item"><%= link_to "Espace admin", "/admin", class:"nav-link" %></li>
+      <% end %>
     <% else %>
     <li class="nav-item">
       <%= link_to "Connexion", new_user_session_path, class:"nav-link" %>

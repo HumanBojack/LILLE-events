@@ -1,21 +1,92 @@
-<h1>Bienvenue, <%= @user.first_name %></h1>
+<h1 class="text-center">Bienvenue, <%= @user.first_name %></h1>
 
-<ul>
-<% @users.each do |user| %>
-	<li>
-		<%= link_to user.email, user_path(user)%>
-	</li>
-<% end %>
-</ul>
+<div class="d-flex flex-row justify-content-around" >
 
-<h3>Not validated events : </h3>
-<ul>
-<% @events.where(validated: false).each do |event| %>
-	<li>
-		<%= link_to event.title, event_path(event) %> |
-		<%= event.user.email %>
-		<%= link_to "Valider", admin_path(event) %>
-		<%= link_to "Supprimer", admin_event_path(event), method: :delete %>
-	</li>
-<% end %>
-</ul>
+<div>
+<h3 class="text-center">Utilisateurs : </h3>
+<table class="table table-dark table-striped table-bordered">
+	<thead>
+		<tr>
+			<th>Identité</th>
+			<th>Email</th>
+			<th>Options</th>
+		</tr>
+	</thead>
+	<tbody>
+	<% @users.each do |user| %>
+		<tr>
+			<td class="text-white" >
+				<%= user.first_name %>
+				<%= user.last_name %>
+			</td>
+			<td>
+				<%= link_to user.email, user_path(user), class:"text-white" %>
+			</td>
+			<td>
+				<%= link_to "Supprimer", admin_user_path(user), method: :delete , class:"btn btn-danger" %>
+			</td>
+		</tr>
+	<% end %>
+	</tbody>
+</table>
+</div>
+
+
+<div>
+<h3 class="text-center">Évènements non validés : </h3>
+<table class="table table-dark table-striped table-bordered">
+	<thead>
+		<tr>
+			<th>Titre</th>
+			<th>Email</th>
+			<th>Options</th>
+		</tr>
+	</thead>
+	<tbody>
+	<% @events.where(validated: false).each do |event| %>
+		<tr>
+			<td>
+				<%= link_to event.title, event_path(event), class:"text-white" %>
+			</td>
+			<td>
+				<%= link_to event.user.email, user_path(event.user), class:"text-white"%>
+			</td>
+			<td>
+				<%= link_to "Valider", admin_path(event), class:"btn btn-success" %>
+				<%= link_to "Éditer", edit_admin_event_path(event), class:"btn btn-warning" %>
+				<%= link_to "Supprimer", admin_event_path(event), method: :delete , class:"btn btn-danger"%>
+			</td>
+		</tr>
+	<% end %>
+	</tbody>
+</table>
+</div>
+
+</div>
+
+<h3>Évènements validés : </h3>
+<table class="table table-dark table-striped">
+	<thead>
+		<tr>
+			<th>Titre</th>
+			<th>Email</th>
+			<th>Options</th>
+		</tr>
+	</thead>
+	<tbody>
+	<% @events.where(validated: true).each do |event| %>
+		<tr>
+			<td>
+				<%= link_to event.title, event_path(event), class:"text-white" %>
+			</td>
+			<td>
+				<%= link_to event.user.email, user_path(event.user), class:"text-white"%>
+			</td>
+			<td>
+				<%= link_to "Éditer", edit_admin_event_path(event), class:"btn btn-warning" %>
+				<%= link_to "Supprimer", admin_event_path(event), method: :delete , class:"btn btn-danger"%>
+			</td>
+		</tr>
+	<% end %>
+	</tbody>
+</table>

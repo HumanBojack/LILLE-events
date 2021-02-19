@@ -1,3 +1,9 @@
 // Place all the styles related to the Events controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+
+.jumbotron {background-color: #053955; color: white;}
+.jumbotron a {display: block; width: 8em;}
+.card-footer .buttons a {margin: 3px;}
+.btn-success {background-color: #3c6382; border-color: #3c6382;}
+.btn-success:hover {background-color: #6b90b2; border-color: #6b90b2;}

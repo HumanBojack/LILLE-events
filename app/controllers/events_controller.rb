@@ -36,6 +36,7 @@ class EventsController < ApplicationController
   end
 
   def show
+  	redirect_if_not_reviewed
   	@event = Event.find(params[:id])
   end
 

@@ -3,7 +3,7 @@
 	<div class="container">
 		<h1 class="display-3"><%= event.user.first_name %> : <%= event.title %></h1>
 		<p><%= event.description %></p>
-		<p><%= link_to "En savoir plus", event_path(event), class:"btn btn-primary btn-lg", role:"button" %></p>
+		<%= link_to "Y accéder", event_path(event), class:"btn btn-primary btn-lg", role:"button" %>
 	</div>
 </div>
 <% end %>

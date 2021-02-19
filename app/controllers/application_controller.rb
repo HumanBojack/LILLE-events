@@ -18,6 +18,10 @@ class ApplicationController < ActionController::Base
 		redirect_to root_path unless current_user.is_admin?(Event.find(params[:event_id]))
 	end
 
+	def redirect_if_not_reviewed
+		redirect_to root_path unless Event.find(params[:id]).validated || current_user.is_admin || Event.find(params[:id]).user == current_user
+	end
+
 	def redirect_if_not_global_admin
 		redirect_to events_path unless current_user.is_admin == true
 	end

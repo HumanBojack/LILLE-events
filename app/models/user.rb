@@ -41,4 +41,8 @@ class User < ApplicationRecord
 	def is_admin?(event)
 		event.user == self
 	end
+
+	def is_global_admin?
+		self.is_admin == true
+	end
 end

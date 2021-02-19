@@ -7,7 +7,8 @@ Rails.application.routes.draw do
   namespace :admin do
   	root "admin#index"
   	get "event/:id/validate", to: "events#validate"
-  	resources :events, only: [:destroy]
+  	resources :events, only: [:destroy, :edit, :update]
+  	resources :users, only: [:destroy]
   end
   resources :events do
   	resources :attendances
