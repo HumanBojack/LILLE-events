@@ -20,6 +20,7 @@ Your gmail account will send mails for createad account, lost passwords, event p
 To do that, create a file named `.env` in the root directory of the project.
 In that file, write :
 >GMAIL_LOGIN='your_gmail_email'
+>
 >GMAIL_PWD='your_gmail_password'
 
 You can also add `STRIPE_PUBLIC`and `STRIPE_PRIVATE` api keys if you want to make the payment functionnal.
