@@ -1,0 +1,21 @@
+<h1>Bienvenue, <%= @user.first_name %></h1>
+
+<ul>
+<% @users.each do |user| %>
+	<li>
+		<%= link_to user.email, user_path(user)%>
+	</li>
+<% end %>
+</ul>
+
+<h3>Not validated events : </h3>
+<ul>
+<% @events.where(validated: false).each do |event| %>
+	<li>
+		<%= link_to event.title, event_path(event) %> |
+		<%= event.user.email %>
+		<%= link_to "Valider", admin_path(event) %>
+		<%= link_to "Supprimer", admin_event_path(event), method: :delete %>
+	</li>
+<% end %>
+</ul>

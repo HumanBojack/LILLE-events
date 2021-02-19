@@ -1,6 +1,7 @@
 <div class="jumbotron jumbotron-fluid">
   <div class="container">
     <div class="card">
+      <%= image_tag @event.banner, class:"card-img-top" %>
     	<div class="card-header">Le <%= @event.start_date.strftime("%d/%m/%Y") %></div>
   		<div class="card-body">Nom : <%= @event.title %></div>
   		<div class="card-body">Host : <%= @event.user.first_name %></div>
@@ -11,13 +12,7 @@
         <%= button_to "S'inscrire", event_create_path(event_id: @event.id), class:"btn btn-success", remote: true if current_user.not_guest_nor_admin?(@event) %>
         <%= link_to "Mon espace admin", event_attendances_path(@event) , class:"btn btn-warning" if current_user.is_admin?(@event) %>
         </div>
-
-
-<!-- edit_event_path(@event.id) -->
-
-  		<!-- <div class="card-footer"><%= link_to "Éditer ou supprimer", edit_user_registration_path %></div> -->
 		</div>
   </div>
 </div>
 
-<%= image_tag @event.banner if @event.event_picture.attached? %>

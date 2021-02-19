@@ -1,4 +1,4 @@
-<% @events.each do |event| %>
+<% @events.where(validated: true).each do |event| %>
 <div class="jumbotron">
 	<div class="container">
 		<h1 class="display-3"><%= event.user.first_name %> : <%= event.title %></h1>

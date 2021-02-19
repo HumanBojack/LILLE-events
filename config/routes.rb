@@ -1,9 +1,13 @@
 Rails.application.routes.draw do
-  get 'avatars/create'
   devise_for :users
   root 'events#index'
   resources :users do
   	resources :avatars, only: [:create]
+  end
+  namespace :admin do
+  	root "admin#index"
+  	get "event/:id/validate", to: "events#validate"
+  	resources :events, only: [:destroy]
   end
   resources :events do
   	resources :attendances

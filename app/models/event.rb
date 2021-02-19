@@ -34,4 +34,8 @@ class Event < ApplicationRecord
 		return self.event_picture.variant(resize: "1200x400!")
 	end
 
+	def validate_event
+		self.update(validated: true)
+	end
+
 end
