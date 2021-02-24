@@ -1,0 +1,9 @@
+<div class="card bg-secondary my-2">
+  <%= image_tag event.banner, class:"card-img-top" %>
+  <div class="card-body d-flex flex-column">
+    <h5 class="card-title"><%= event.title %> -<%= event.user.first_name %> <span class="badge badge-pill badge-primary"><%= event.price %>€</span></h5>
+    <p class="card-text"><%= event.description %></p>
+    <%= link_to "En voir plus", event_path(event), class:"btn btn-primary align-self-end m-2" %>
+    <p class="card-text text-center"><small>Event date : <%= event.start_date.strftime("%d/%m/%Y") %></small></p>
+  </div>
+</div>

@@ -1,6 +1,6 @@
 <div class="card mx-auto col-lg-6 py-2 my-5">
-	<h1 class="mb-3">Éditer l'évent (admin)</h1>
-	<%= form_for @event, :url => admin_event_path, :html => { :multipart => true } do |f| %>
+	<h1 class="mb-3">Your event</h1>
+	<%= form_for @event, :html => { :multipart => true } do |f| %>
 		<div class="form-group">
 			<%= f.text_field :title, class:"form-control", placeholder:"Nom de l'event (Entre 5 et 80 caractères)" %>
 		</div>

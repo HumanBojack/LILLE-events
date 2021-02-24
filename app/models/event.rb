@@ -1,7 +1,7 @@
 class Event < ApplicationRecord
 	validates :start_date, presence: true
 	validates :duration, presence: true
-	validates :title, length: {in: 5..140}
+	validates :title, length: {in: 5..80}
 	validates :description, length: {in: 20..1000}
 	validates :price, numericality: {greater_than: 0, less_than_or_equal_to: 1000}
 	validates :location, presence: true
@@ -33,6 +33,8 @@ class Event < ApplicationRecord
 
 	def banner
 		return self.event_picture.variant(resize: "1280x720!")
+	rescue ActiveStorage::InvariableError
+	return self 
 	end
 
 	def validate_event

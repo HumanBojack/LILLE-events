@@ -1,9 +1,5 @@
-<% @events.where(validated: true).each do |event| %>
-<div class="jumbotron">
-	<div class="container">
-		<h1 class="display-3"><%= event.user.first_name %> : <%= event.title %></h1>
-		<p><%= event.description %></p>
-		<%= link_to "Y accéder", event_path(event), class:"btn btn-primary btn-lg", role:"button" %>
-	</div>
+<div class="card-columns col-lg-10 mx-auto">
+	<% @events.where(validated: true).each do |event| %>
+		<%= render "card", event: event %>
+	<% end %>
 </div>
-<% end %>

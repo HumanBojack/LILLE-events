@@ -7,7 +7,7 @@ class CommentsController < ApplicationController
 			flash.notice = "Comment successfully created"
 			redirect_to comment.event
 		else
-			flash.error = comment.errors.full_messages.to_sentence
+			flash.alert = comment.errors.full_messages.to_sentence
 			redirect_to comment.event
 		end
 	end
