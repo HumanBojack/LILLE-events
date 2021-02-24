@@ -11,6 +11,7 @@ class Event < ApplicationRecord
 	belongs_to :user
 	has_many :attendances, dependent: :destroy
 	has_many :users, through: :attendances
+	has_many :comments, dependent: :destroy
 	has_one_attached :event_picture
 
 	def past_date
@@ -31,7 +32,7 @@ class Event < ApplicationRecord
 	end
 
 	def banner
-		return self.event_picture.variant(resize: "1200x400!")
+		return self.event_picture.variant(resize: "1280x720!")
 	end
 
 	def validate_event

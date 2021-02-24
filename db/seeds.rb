@@ -12,7 +12,7 @@ User.all.destroy_all
 end
 10.times do
 	e = Event.new(user: User.all.sample, start_date: Faker::Date.between(from: Date.today, to: 1.year.from_now), duration: (0..200).step(5).to_a.sample, title: Faker::GreekPhilosophers.quote ,description: Faker::Lorem.paragraph_by_chars(number: rand(20..1000), supplemental: false) ,price: rand(1..1000), location: Faker::Address.city )
-	url = URI.parse(Faker::LoremFlickr.image(size: "1200x400"))
+	url = URI.parse(Faker::LoremFlickr.image(size: "1280x720"))
 	filename = url.path
 	file = URI.open(url)
 	e.event_picture.attach(io: file, filename: filename)

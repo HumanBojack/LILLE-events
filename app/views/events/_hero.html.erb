@@ -1,0 +1,16 @@
+<div class="container d-flex flex-column flex-lg-row justify-content-between bg-dark px-0 py-3" >
+    <%= image_tag @event.banner, class:"card-img col-lg-8 p-0" %>
+    <div class="col-lg-4 pr-0">
+      <p class="h2 text-center"> <%= pluralize(@event.users.count, 'inscrit', plural: 'inscrits' ) %> </p>
+  <ul class="list-group max-height-400"style="overflow:auto;">
+    <% @event.users.each do |user| %>
+      <li class="list-group-item bg-primary my-1 d-flex justify-content-between">
+        <%= image_tag user.avatar, class:"small-image" %>
+        <p class="h4 mx-auto mb-0 align-self-center">
+          <%= user.first_name %>
+        </p>
+      </li>
+    <% end %>
+  </ul>
+</div>
+</div>

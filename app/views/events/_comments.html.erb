@@ -1,0 +1,12 @@
+<ul class="list-group">
+	<% @event.comments.each do |comment| %>
+	<li class="list-group-item bg-secondary mt-2 border-subtle d-flex justify-content-start"><%= image_tag comment.user.avatar, class:"small-image" %><p class="h5 ml-2 mr-2 align-self-start"><%= comment.user.first_name %></p><p class="ml-1"><%= comment.content %></p></li>
+	<% end %>
+</ul>
+
+<div class="bg-secondary mt-2 mb-4 p-2 d-flex flex-column">
+	<%= form_with model: [@event, @event.comments.build], class:"container d-flex flex-column p-0 bg-primary border-radius-10" do |f| %>
+		<%= f.text_area :content, class:"form-control", placeholder:"Enter some content (Between 15 and 400 characters)"%>
+		<%= f.submit "Publish", class:"btn btn-primary" %>
+	<% end %>
+</div>

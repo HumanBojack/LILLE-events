@@ -12,7 +12,7 @@ class EventsController < ApplicationController
 		if @event.save	
 			redirect_to event_path(@event)
 		else
-			flash.now.alert = "Erreur, vérifiez la longueur de vos champs. La durée doit être multiple de 5"
+			flash.now.alert = @event.errors.full_messages.to_sentence
 			render :new
 		end
 	end

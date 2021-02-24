@@ -1,25 +1,8 @@
-<div class="jumbotron jumbotron-fluid">
-  <div class="container">
-    <div class="card">
-      <%= image_tag @event.banner, class:"card-img-top" %>
-    	<div class="card-header">Le <%= @event.start_date.strftime("%d/%m/%Y") %></div>
-  		<div class="card-body">Nom : <%= @event.title %></div>
-  		<div class="card-body">Host : <%= @event.user.first_name %></div>
-  		<div class="card-body">Lieu : <%= @event.location %></div>
-  		<div class="card-body">Description : <%= @event.description %></div>
-  		<div class="card-body">Prix : <%= @event.price %>€</div>
-  		<div class="card-footer d-flex justify-content-between">
-        <p><%= @event.users.count%> inscrits, dure <%= @event.duration %> minutes </p>
-        <%= button_to "S'inscrire", event_create_path(event_id: @event.id), class:"btn btn-primary", remote: true if current_user.not_guest_nor_admin?(@event) %>
-        <div class="d-flex flex-column buttons">  
-          <%= link_to "Mon espace admin", event_attendances_path(@event) , class:"btn btn-warning" if current_user.is_admin?(@event) %>
-            <% if current_user.is_global_admin? %>
-              <%= link_to "Éditer l'event", edit_admin_event_path(@event), class:"btn btn-primary" %>
-              <%= link_to "Supprimer l'event", admin_event_path(@event), method: :delete, class:"btn btn-danger" %>
-            <% end %>
-        </div>
-      </div>
-		</div>
-  </div>
+<div class="container bg-dark px-3 py-2">
+  <%= render "hero" %>
+  <%= render "infos" %>
+  <%= render "comments" %>
 </div>
+
+
 

@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   end
   resources :events do
   	resources :attendances
+    resources :comments
   	scope '/attendances' do
   		post 'create', to: 'attendances#create'
   		get 'success', to: 'attendances#success'
